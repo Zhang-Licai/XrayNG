@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.myTest.Lang"
-    compileSdk = 35.0.0
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.myTest.Lang"
