@@ -150,7 +150,7 @@ jobs:
     - name: Upload x86 APK
       uses: actions/upload-artifact@v4
       if: ${{  success() }}
-      with: 
+      with:
         name: x86-apk
         path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/*/release/*x86*.apk
 
