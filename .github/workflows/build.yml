@@ -129,7 +129,7 @@ jobs:
         cd ${{ github.workspace }}/V2rayNG
         chmod 755 gradlew
         ./gradlew licenseFdroidReleaseReport
-        ./gradlew assembleMainRelease -Pandroid.injected.signing.store.file=${{ steps.android_keystore.outputs.filePath }} -Pandroid.injected.signing.store.password=${{ secrets.android_certificate_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.android_certificate_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.android_certificate_PASSWORD }}
+        ./gradlew assembleRelease -Pandroid.injected.signing.store.file=${{ steps.android_keystore.outputs.filePath }} -Pandroid.injected.signing.store.password=${{ secrets.android_certificate_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.android_certificate_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.android_certificate_PASSWORD }}
 
 
       env:
