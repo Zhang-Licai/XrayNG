@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.myTest.Lang"
-    compileSdk = 35
+    compileSdk = 35.0.0
 
     defaultConfig {
         applicationId = "com.myTest.Lang"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 35.0.0
         versionCode = 635
         versionName = "1.9.38"
         multiDexEnabled = true
