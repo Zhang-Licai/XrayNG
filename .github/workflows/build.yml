@@ -22,7 +22,7 @@ jobs:
         path: ${{ github.workspace }}/libs
         key: libtun2socks-${{ runner.os }}-${{ hashFiles('.git/modules/badvpn/HEAD') }}-${{ hashFiles('.git/modules/libancillary/HEAD') }}
 
-    - name: Setup Android NDK
+    - name: Setup Android NDK    
       uses: nttld/setup-ndk@v1
       id: setup-ndk
       # Same version as https://gitlab.com/fdroid/fdroiddata/metadata/com.v2ray.ang.yml
@@ -122,14 +122,14 @@ jobs:
       id: android_keystore
       with:
         fileName: "android_keystore.jks"
-        encodedString: ${{ secrets.APP_KEYSTORE_BASE64 }}
+        encodedString: ${{ secrets.android_certificate }}    
 
     - name: Build APK
       run: |
         cd ${{ github.workspace }}/V2rayNG
         chmod 755 gradlew
         ./gradlew licenseFdroidReleaseReport
-        ./gradlew assembleRelease -Pandroid.injected.signing.store.file=${{ steps.android_keystore.outputs.filePath }} -Pandroid.injected.signing.store.password=${{ secrets.APP_KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.APP_KEYSTORE_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.APP_KEY_PASSWORD }}
+        ./gradlew assembleRelease -Pandroid.injected.signing.store.file=${{ steps.android_keystore.outputs.filePath }} -Pandroid.injected.signing.store.password=${{ secrets.android_certificate_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.android_certificate_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.android_certificate_PASSWORD }}
       env:
         ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
@@ -150,7 +150,7 @@ jobs:
     - name: Upload x86 APK
       uses: actions/upload-artifact@v4
       if: ${{  success() }}
-      with:
+      with: 
         name: x86-apk
         path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/*/release/*x86*.apk
 
