@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.myTest.Lang"
         minSdk = 21
-        targetSdk = 35.0.0
+        targetSdk = 35
         versionCode = 635
         versionName = "1.9.38"
         multiDexEnabled = true
